@@ -79,6 +79,9 @@ data:
     kind: PersistentVolumeClaim
     metadata:
       name: "${NAME}-${DATABASE_SERVICE_NAME}"
+      annotations:
+        # https://docs.openshift.org/latest/install_config/persistent_storage/dynamically_provisioning_pvs.html
+        volume.alpha.kubernetes.io/storage-class: anything
     spec:
       accessModes:
         - ReadWriteOnce
@@ -89,6 +92,9 @@ data:
     kind: PersistentVolumeClaim
     metadata:
       name: "${NAME}-region"
+      annotations:
+        # https://docs.openshift.org/latest/install_config/persistent_storage/dynamically_provisioning_pvs.html
+        volume.alpha.kubernetes.io/storage-class: anything
     spec:
       accessModes:
         - ReadWriteOnce
@@ -192,7 +198,7 @@ data:
             annotations:
               # Uncomment this if using dynamic volume provisioning.
               # https://docs.openshift.org/latest/install_config/persistent_storage/dynamically_provisioning_pvs.html
-              # volume.alpha.kubernetes.io/storage-class: anything
+              volume.alpha.kubernetes.io/storage-class: anything
           spec:
             accessModes: [ ReadWriteOnce ]
             resources:
